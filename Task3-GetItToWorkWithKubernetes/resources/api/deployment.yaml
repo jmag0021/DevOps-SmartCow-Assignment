@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api
+  namespace: 'smartcow-ns'
+  labels:
+    application: api
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  selector:
+    matchLabels:
+      application: api
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        application: api
+    spec:
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 15
+      containers:
+      - name: api
+        image: api-image
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8000
+          name: "api-port"
+          protocol: TCP
+        env:
+        - name: MODULE_NAME
+          value: app
+        - name: PORT
+          value: '8000'
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 200m
+            memory: 512Mi
+        livenessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 30
+          periodSeconds: 2
+          successThreshold: 1
+          tcpSocket:
+            port: 8000
+          timeoutSeconds: 2
+        readinessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 30
+          periodSeconds: 2
+          successThreshold: 2
+          tcpSocket:
+            port: 8000
+          timeoutSeconds: 2

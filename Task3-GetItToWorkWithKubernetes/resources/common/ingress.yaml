@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: smartcow-ingress
+  namespace: 'smartcow-ns'
+spec:
+  rules:
+  - host: local-link.info
+    http:
+      paths:
+        - path: "/stats"
+          pathType: Prefix
+          backend:
+            service:
+              name: api-svc
+              port:
+                number: 8000
+        - path: "/"
+          pathType: Prefix
+          backend:
+            service:
+              name: sys-stats-svc
+              port:
+                number: 80

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: 'smartcow-ns'
+  name: 'api-svc'
+spec:
+  selector:
+    application: api
+  ports:
+  - name: api-port
+    protocol: TCP
+    port: 8000
+    targetPort: 8000
