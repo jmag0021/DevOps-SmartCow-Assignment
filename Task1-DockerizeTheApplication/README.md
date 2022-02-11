@@ -27,6 +27,10 @@ You will be evaluated based on the
         - First copying the fils to the /app directory
         - Running of pip to install required modules for the applications ( optional --quite to silence output)
         - Setup environmental variables accordingly to run
-    
+
 2. Create Dockerfile for sys-stats
-    
+    - Using multi stage dockerfile 
+        - first stage we are using node alpine image to build the react app
+        - second stage the nginx proxy is refering to the build result of the node image to serve the webapp
+
+3. Creating the dokercompose

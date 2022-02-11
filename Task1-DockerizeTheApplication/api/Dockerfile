@@ -1,6 +1,7 @@
 # Dockerfile for Python API application
 # docker build . -t api-image
 # docker run --rm --name api -e MODULE_NAME=app -e PORT=8000 -p 8000:8000 api-image
+# Check result on http://localhost:8000/stats
 
 FROM tiangolo/meinheld-gunicorn-flask:python3.7
 
