@@ -20,6 +20,7 @@ You will be evaluated based on the
 ## Task 1 - Documentation
 
 1. Create Dockerfile for api
+    - Quick search on best practice of packaging docker file for python applications (Had previous experience of such builds)
     - Docker image with Meinheld managed by Gunicorn for high-performance web applications in Flask using Python with performance auto-tuning.
         - GitHub repo: https://github.com/tiangolo/meinheld-gunicorn-flask-docker
         - Docker Hub image: https://hub.docker.com/r/tiangolo/meinheld-gunicorn-flask/
@@ -29,8 +30,14 @@ You will be evaluated based on the
         - Setup environmental variables accordingly to run
 
 2. Create Dockerfile for sys-stats
+    - Quick search on best practice of packaging docker file for react applications
     - Using multi stage dockerfile 
         - first stage we are using node alpine image to build the react app
         - second stage the nginx proxy is refering to the build result of the node image to serve the webapp
 
 3. Creating the dokercompose
+        - docker compose setup is setup with build directories for each application and environmental variables are set up accordingly
+
+To run the project:
+    - Run `docker-compose up --build` in the Task1-DockerizeTheApplication
+    - Open browser http://localhost:3000

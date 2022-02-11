@@ -1,0 +1,25 @@
+# Docker-compose file
+# Force a rebuild of containers
+# docker-compose up -d --build
+# Ignore the cache:
+# docker-compose build --no-cache
+
+version: "3.9"
+services:
+  api:
+    container_name: api
+    build:
+      dockerfile: Dockerfile
+      context: "./api"
+    ports:
+      - "8000:8000"
+    environment:
+      MODULE_NAME: "app"
+      PORT: "8000"
+  sys-stats:
+    container_name: sys-stats
+    build:
+      dockerfile: Dockerfile
+      context: "./sys-stats"
+    ports:
+      - "3000:80"
